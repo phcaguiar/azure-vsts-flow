@@ -7,6 +7,7 @@ resource "azurerm_network_interface" "nic" {
     name                          = "${var.nic_ip_configuration_name}"
     subnet_id                     = "${data.azurerm_subnet.subnet.id}"
     private_ip_address_allocation = "dynamic"
+    public_ip_address_id          = "${azurerm_public_ip.pubip.id}"
   }
 }
 
@@ -53,6 +54,6 @@ resource "azurerm_virtual_machine" "vm" {
   }
   
   # provisioner "local-exec" {
-  #       command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '${azurerm_network_interface.nic.private_ip_address},' playbook.yml"
+  #       command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '${azurerm_public_ip.pubip.ip_address},' playbook.yml"
   # }  
 }
