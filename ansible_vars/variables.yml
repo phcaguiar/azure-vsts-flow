@@ -1,0 +1,26 @@
+---
+# Ansible VM variables
+ansible_user: "{{ lookup('env','TF_VAR_vm_os_profile_admin_username') }}"
+ansible_password: "{{ lookup('env','TF_VAR_vm_os_profile_admin_password') }}"
+
+# Ansible VSTS project variables
+vsts_accountname: ""
+vsts_projectname: ""
+vsts_accesstoken: "{{ lookup('env','env_vsts_accesstoken') }}"
+vsts_poolname: ""
+
+vsts_remove: false # Use true to uninstall
+vsts_reinstall: false # Use true to reinstall
+
+# LVM Variables
+lvm_pvs_name: /dev/sdc
+lvm_mount_point_path: /var/lib/docker
+lvm_vg_name: docker
+lvm_lv_name: docker
+
+# Docker Variables
+docker_version: '18.06.1~ce~3-0~ubuntu'
+docker_apt_release_channel: 'stable'
+docker_apt_repository: 'deb https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} {{ docker_apt_release_channel }}'
+docker_group_members: 
+  - 'ubuntu'
