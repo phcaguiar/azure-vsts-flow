@@ -1,7 +1,7 @@
 # Global variables
 variable "location" {
   description = "Set a location for your new resource. If you do not fill in the default value will be used below."
-  default     = "centralus"
+  default     = "eastus2"
 }
 
 # Shared variables from your subscription

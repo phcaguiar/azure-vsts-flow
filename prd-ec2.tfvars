@@ -1,15 +1,15 @@
 # Global variables
-# location                                =   ""
+location                                =   "eastus2"
 
 # Shared variables from your subscription
-network_rg_name                         =   "financialit-sample-prd"
+network_rg_name                         =   "test-vsts-ci-prd-ec2"
 
 # Virtual network and subnet variables from your subscription
-shared_vnet_name                        =   "financialit-sample-prd"
-shared_subnet_name                      =   "financialit-sample-prd-app-1"
+shared_vnet_name                        =   "test-vsts-ci-prd-ec2"
+shared_subnet_name                      =   "test-vsts-ci-prd-ec2"
 
 # Your product variables
-product_rg_name                         =   "financialit-sample-prd"
+product_rg_name                         =   "test-vsts-ci-prd-ec2"
 
 # Virtual network interface variables
 # nic_name                                =   ""
