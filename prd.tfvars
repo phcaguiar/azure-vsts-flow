@@ -2,14 +2,14 @@
 # location                                =   ""
 
 # Shared variables from your subscription
-# network_rg_name                         =   "financialit-sample-prd"
+network_rg_name                         =   "financialit-sample-prd"
 
-# # Virtual network and subnet variables from your subscription
-# shared_vnet_name                        =   "financialit-sample-prd"
-# shared_subnet_name                      =   "financialit-sample-prd-app-1"
+# Virtual network and subnet variables from your subscription
+shared_vnet_name                        =   "financialit-sample-prd"
+shared_subnet_name                      =   "financialit-sample-prd-app-1"
 
-# # Your product variables
-# product_rg_name                         =   "financialit-sample-prd"
+# Your product variables
+product_rg_name                         =   "financialit-sample-prd"
 
 # Virtual network interface variables
 # nic_name                                =   ""
