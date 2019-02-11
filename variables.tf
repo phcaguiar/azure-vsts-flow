@@ -26,18 +26,18 @@ variable "product_rg_name" {
 
 variable "nic_name" {
   description = "Set a name for your nic. If you do not fill in the default value will be used below."
-  default     = "nic"
+  default     = "nicapp"
 }
 
 variable "nic_ip_configuration_name" {
   description = "Set a name for your IC IP configuration. If you do not fill in the default value will be used below."
-  default     = "nicipconf"
+  default     = "nicipconfapp"
 }
 
 # Virtual machine variables
 variable "vm_name" {
   description = "Set a name for your virtual machine. If you do not fill in the default value will be used below."
-  default     = "personalvm"
+  default     = "personalvmapp"
 }
 
 variable "vm_size" {
@@ -49,7 +49,7 @@ variable "vm_size" {
 # Virtual machine storage variables
 variable "vm_storage_os_disk_name" {
   description = "Set a name for your storage disk name. If you do not fill in the default value will be used below."
-  default     = "stgosdskname"
+  default     = "stgosdsknameapp"
 }
 
 variable "vm_storage_os_disk_caching" {
@@ -76,7 +76,7 @@ variable "vm_storage_os_managed_disk_type" {
 # Virtual machine credential and profile variables
 variable "vm_os_profile_computer_name" {
   description = "Set a hostname for your virtual machine. If you do not fill in the default value will be used below."
-  default     = "personalcompname"
+  default     = "personalcompapp"
 }
 
 variable "vm_os_profile_admin_username" {
