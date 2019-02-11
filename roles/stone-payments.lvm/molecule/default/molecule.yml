@@ -1,0 +1,42 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint:
+  name: yamllint
+platforms:
+  - name: lvm
+    box: bento/centos-7.4
+    memory: 1024
+    cups: 1
+    provider_raw_config_args:
+      - "customize ['createmedium', 'disk', '--filename', 'storage/sdb.vdi', '--size', 8192]"
+      - "customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--device', 0, '--port', 1, '--type', 'hdd', '--medium', 'storage/sdb.vdi']"
+provisioner:
+  name: ansible
+  inventory:
+    host_vars:
+      lvm:
+        lvm_pvs_name: /dev/sdb
+        lvm_vg_name: vg
+        lvm_lv_name: lv
+        lvm_fstype: xfs
+        lvm_mount_point_path: /data
+        lvm_mount_point_owner: root
+        lvm_mount_point_group: root
+        lvm_mount_point_opts: defaults
+  playbooks:
+    converge: ../../playbook.yml
+  lint:
+    name: ansible-lint
+scenario:
+  name: default
+verifier:
+  name: testinfra
+  directory: ../../tests
+  lint:
+    name: flake8
+    enabled: true

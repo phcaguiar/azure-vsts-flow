@@ -36,12 +36,12 @@ resource "azurerm_virtual_machine" "vm" {
     managed_disk_type = "${var.vm_storage_os_managed_disk_type}"
   }
 
-  storage_data_disk {
-    name          = "${var.vm_storage_os_disk_name}-data"
-    disk_size_gb  = "${var.vm_storage_data_disk_size_gb}"
-    create_option = "Empty"
-    lun           = 0
-  }  
+  # storage_data_disk {
+  #   name          = "${var.vm_storage_os_disk_name}-data"
+  #   disk_size_gb  = "${var.vm_storage_data_disk_size_gb}"
+  #   create_option = "Empty"
+  #   lun           = 0
+  # }  
 
   os_profile {
     computer_name  = "${var.vm_os_profile_computer_name}"
@@ -53,7 +53,4 @@ resource "azurerm_virtual_machine" "vm" {
     disable_password_authentication = false
   }
   
-  # provisioner "local-exec" {
-  #       command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '${azurerm_public_ip.pubip.ip_address},' playbook.yml"
-  # }  
 }

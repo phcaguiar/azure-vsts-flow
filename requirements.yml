@@ -2,7 +2,3 @@
 - src: git+git@github.com:stone-payments/ansible-role-vsts-agent.git
   version: feature/debian-rhel
   name: stone-payments.ansible-role-vsts-agent
-
-- src: git+git@github.com:stone-payments/ansible-lvm.git
-  version: v1.0.0
-  name: stone-payments.lvm

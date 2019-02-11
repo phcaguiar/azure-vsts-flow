@@ -1,0 +1,22 @@
+---
+- name: check if mount dir exists
+  stat:
+    path: "{{ lvm_mount_point_path }}"
+  register: stat_result
+
+- name: creates directory to mount filesystem if don't exists
+  file:
+    path: "{{ lvm_mount_point_path }}"
+    state: directory
+    owner: "{{ lvm_mount_point_owner }}"
+    group: "{{ lvm_mount_point_group }}"
+    recurse: true
+  when: stat_result.stat.exists == false
+
+- name: mounts up device /dev/{{ lvm_vg_name }}/{{ lvm_lv_name }}
+  mount:
+    path: "{{ lvm_mount_point_path }}"
+    src: "/dev/{{ lvm_vg_name }}/{{ lvm_lv_name }}"
+    fstype: "{{ lvm_fstype }}"
+    opts: "{{ lvm_mount_point_opts }}"
+    state: mounted

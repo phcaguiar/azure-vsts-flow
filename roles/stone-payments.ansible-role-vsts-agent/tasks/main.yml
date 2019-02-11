@@ -1,0 +1,8 @@
+---
+- name: Ansible Configuration for OS Family Debian
+  include_tasks: debian/main.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Ansible Configuration for OS Family Rhel
+  include_tasks: rhel/main.yml
+  when: ansible_os_family == 'RedHat'

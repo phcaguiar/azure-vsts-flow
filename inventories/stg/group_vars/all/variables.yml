@@ -1,0 +1,10 @@
+---
+# Ansible VM variables
+ansible_user: "{{ lookup('env','TF_VAR_vm_os_profile_admin_username') }}"
+ansible_password: "{{ lookup('env','TF_VAR_vm_os_profile_admin_password') }}"
+
+# Ansible VSTS project variables
+vsts_deploymentgroupname: "cloud-test-stg"
+
+vsts_remove: false # Use true to uninstall
+vsts_reinstall: false # Use true to reinstall

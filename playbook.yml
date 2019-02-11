@@ -2,72 +2,70 @@
 - name: Linux Provisioning
   hosts: all
   become: true
-  vars_files:
-    - ansible_vars/variables.yml
   tasks:  
-### VSTS Agent installation task
+## VSTS Agent installation task
     - name: install vsts agent
       include_role:
         name: stone-payments.ansible-role-vsts-agent
-      vars: 
-        vsts_agent_name: "{{ ansible_hostname }}-a{{ item }}"
-        vsts_agentfolder: "/home/{{ vsts_agent_user }}/agent/a{{ item }}"
-        vsts_workfolder:  "/home/{{ vsts_agent_user }}/work/a{{ item }}"
-      loop: "{{ range(1,3) | list }}"
-### LVM task
-    - name: configure lvm
-      include_role:
-        name: stone-payments.lvm
-### Docker tasks
-    - name: 'install docker dependencies'
-      apt:
-        name: '{{ item }}'
-        state: 'present'
-      with_items:
-        - 'apt-transport-https'
-        - 'ca-certificates'  
+      # vars: 
+      #   vsts_agent_name: "{{ ansible_hostname }}-a{{ item }}"
+      #   vsts_agentfolder: "/home/{{ vsts_agent_user }}/agent/a{{ item }}"
+      #   vsts_workfolder:  "/home/{{ vsts_agent_user }}/work/a{{ item }}"
+      # loop: "{{ range(1,3) | list }}"
+# ### LVM task
+#     - name: configure lvm
+#       include_role:
+#         name: stone-payments.lvm
+# ### Docker tasks
+#     - name: 'install docker dependencies'
+#       apt:
+#         name: '{{ item }}'
+#         state: 'present'
+#       with_items:
+#         - 'apt-transport-https'
+#         - 'ca-certificates'  
 
-    - name: 'add docker repo apt key'
-      apt_key:
-        url: 'https://download.docker.com/linux/ubuntu/gpg'
-        id: '9DC858229FC7DD38854AE2D88D81803C0EBFCD88'
-        state: 'present'
-      register: 'add_repository_key'
-      ignore_errors: true          
+#     - name: 'add docker repo apt key'
+#       apt_key:
+#         url: 'https://download.docker.com/linux/ubuntu/gpg'
+#         id: '9DC858229FC7DD38854AE2D88D81803C0EBFCD88'
+#         state: 'present'
+#       register: 'add_repository_key'
+#       ignore_errors: true          
 
-    - name: 'add Docker repository'
-      apt_repository:
-        repo: '{{ docker_apt_repository }}'
-        state: 'present'
-        update_cache: 'yes'   
+#     - name: 'add Docker repository'
+#       apt_repository:
+#         repo: '{{ docker_apt_repository }}'
+#         state: 'present'
+#         update_cache: 'yes'   
 
-    - name: 'install docker'
-      apt:
-        name: 'docker-ce={{ docker_version }}'
-        state: 'present'       
+#     - name: 'install docker'
+#       apt:
+#         name: 'docker-ce={{ docker_version }}'
+#         state: 'present'       
 
-    - name: 'prepare default daemon configuration'
-      copy:
-        src: 'daemon.json'
-        dest: '/etc/docker/daemon.json'
+#     - name: 'prepare default daemon configuration'
+#       copy:
+#         src: 'daemon.json'
+#         dest: '/etc/docker/daemon.json'
 
-    - name: 'set periodic docker system prune'
-      cron:
-        name: 'docker-prune'
-        minute: '0'
-        hour: '*/2'
-        job: 'docker container prune -f'    
+#     - name: 'set periodic docker system prune'
+#       cron:
+#         name: 'docker-prune'
+#         minute: '0'
+#         hour: '*/2'
+#         job: 'docker container prune -f'    
 
-    - name: 'add users to docker group'
-      user:
-        name: '{{ item }}'
-        groups: 'docker'
-        append: 'yes'
-      with_items: '{{ docker_group_members }}'
-      when: 'docker_group_members is defined'
+#     - name: 'add users to docker group'
+#       user:
+#         name: '{{ item }}'
+#         groups: 'docker'
+#         append: 'yes'
+#       with_items: '{{ docker_group_members }}'
+#       when: 'docker_group_members is defined'
 
-    - name: 'enable docker systemd service'
-      service:
-        name: 'docker'
-        state: 'started'
-        enabled: 'yes'
+#     - name: 'enable docker systemd service'
+#       service:
+#         name: 'docker'
+#         state: 'started'
+#         enabled: 'yes'

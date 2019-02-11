@@ -62,10 +62,10 @@ variable "vm_storage_os_create_option" {
   default     = "FromImage"
 }
 
-variable "vm_storage_data_disk_size_gb" {
-  description = "Set a value for storage data disk size in GB. If you do not fill in the default value will be used below."
-  default     = "50"
-}
+# variable "vm_storage_data_disk_size_gb" {
+#   description = "Set a value for storage data disk size in GB. If you do not fill in the default value will be used below."
+#   default     = "50"
+# }
 
 variable "vm_storage_os_managed_disk_type" {
   description = "Set a storage managed disk type for your virtual machine. If you do not fill in the default value will be used below."

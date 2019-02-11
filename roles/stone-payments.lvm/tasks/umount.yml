@@ -1,0 +1,14 @@
+---
+- name: unmounts device /dev/{{ lvm_vg_name }}/{{ lvm_lv_name }}
+  mount:
+    path: "{{ lvm_mount_point_path }}"
+    src: "/dev/{{ lvm_vg_name }}/{{ lvm_lv_name }}"
+    fstype: "{{ lvm_fstype }}"
+    state: unmounted
+
+- name: removes mount /dev/{{ lvm_vg_name }}/{{ lvm_lv_name }} from fstab
+  mount:
+    path: "{{ lvm_mount_point_path }}"
+    src: "/dev/{{ lvm_vg_name }}/{{ lvm_lv_name }}"
+    fstype: "{{ lvm_fstype }}"
+    state: absent

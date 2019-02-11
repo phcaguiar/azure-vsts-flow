@@ -1,0 +1,31 @@
+---
+- name: creates a volume group
+  lvg:
+    vg: "{{ lvm_vg_name }}"
+    pvs: "{{ lvm_pvs_name }}"
+    state: present
+  tags:
+    - create_vg
+
+- name: creates a logical volume the size of all remaining space in the volume group
+  lvol:
+    vg: "{{ lvm_vg_name }}"
+    lv: "{{ lvm_lv_name }}"
+    size: "{{ lvm_lv_size }}"
+    state: present
+    shrink: "{{ lvm_shrink }}"
+  tags:
+    - create_lvm
+
+- name: creates a {{ lvm_fstype }} filesystem on /dev/{{ lvm_vg_name }}/{{ lvm_lv_name }}
+  filesystem:
+    fstype: "{{ lvm_fstype }}"
+    dev: "/dev/{{ lvm_vg_name }}/{{ lvm_lv_name }}"
+  tags:
+    - create_lvm
+
+- name: mount device /dev/{{ lvm_vg_name }}/{{ lvm_lv_name }}
+  include_tasks: mount.yml
+  when: lvm_device_mount
+  tags:
+    - mount

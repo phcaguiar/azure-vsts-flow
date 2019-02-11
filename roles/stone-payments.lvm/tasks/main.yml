@@ -1,0 +1,16 @@
+---
+- name: creates a volume group
+  include_tasks: create.yml
+  when: lvm_create
+  tags:
+    - create_vg
+    - create_lvm
+    - mount
+
+- name: removes a volume group
+  include_tasks: remove.yml
+  when: lvm_create == false
+  tags:
+    - remove_lvm
+    - remove_vg
+    - umount

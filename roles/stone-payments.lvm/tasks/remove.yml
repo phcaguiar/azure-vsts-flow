@@ -1,0 +1,25 @@
+---
+- name: umount device
+  include_tasks: umount.yml
+  tags:
+    - umount
+
+- name: removes a logical volume
+  lvol:
+    vg: "{{ lvm_vg_name }}"
+    lv: "{{ lvm_lv_name }}"
+    size: "{{ lvm_lv_size }}"
+    state: absent
+    force: true
+    shrink: "{{ lvm_shrink }}"
+  tags:
+    - remove_lvm
+
+- name: removes a volume group
+  lvg:
+    vg: "{{ lvm_vg_name }}"
+    pvs: "{{ lvm_pvs_name }}"
+    force: true
+    state: absent
+  tags:
+    - remove_vg

@@ -1,0 +1,4 @@
+# Global VSTS project variables
+vsts_accountname: "stonepagamentos"
+vsts_projectname: "Inf-Infrastructure"
+vsts_accesstoken: "{{ lookup('env','env_vsts_accesstoken') }}"

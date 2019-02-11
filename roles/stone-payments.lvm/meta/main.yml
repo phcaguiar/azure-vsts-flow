@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Paulo Mariano
+  description: Ansible role to create, remove, mount and umount a single Linux Volume Manager (LVM)
+  company: Stone Payments S.A.
+  license: MIT
+  min_ansible_version: 2.0.0
+  platforms:
+    - name: Linux
+      versions:
+        - Redhat
+        - Debian
+  galaxy_tags:
+    - lvm

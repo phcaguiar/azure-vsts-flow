@@ -1,0 +1,20 @@
+---
+# To manager volumes groups
+#  - true: to create a vg and lv
+#  - false: to remove a vg and lv
+lvm_create: true
+
+# If you need to manage logical volumes and volume groups
+lvm_pvs_name: /dev/sdb
+lvm_vg_name: vg
+lvm_lv_name: lv
+lvm_shrink: false
+lvm_lv_size: 100%FREE
+lvm_fstype: xfs
+
+# To create and mount a new filesystem
+lvm_device_mount: true
+lvm_mount_point_path: /data
+lvm_mount_point_owner: root
+lvm_mount_point_group: root
+lvm_mount_point_opts: defaults

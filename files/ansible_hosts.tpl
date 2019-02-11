@@ -1,0 +1,2 @@
+[all]
+${azure_hosts}
