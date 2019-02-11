@@ -5,7 +5,7 @@ data "azurerm_subnet" "subnet" {
 }
 
 resource "azurerm_public_ip" "pubip" {
-  name                         = "phca-publicip"
+  name                         = "app-publicip"
   resource_group_name          = "${var.product_rg_name}"
   location                     = "${var.location}"
   allocation_method = "Static"
